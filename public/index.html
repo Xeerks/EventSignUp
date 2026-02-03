@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Event Registration</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <main class="card">
+    <header class="header">
+      <h1>Event Registration</h1>
+      <p class="muted">Please fill in your details. All fields marked * are required.</p>
+    </header>
+
+    <form method="POST" action="register.php" class="form">
+      <div class="grid">
+        <label class="field">
+          <span class="label">First name *</span>
+          <input type="text" name="first_name" required maxlength="50" autocomplete="given-name" />
+        </label>
+
+        <label class="field">
+          <span class="label">Last name *</span>
+          <input type="text" name="last_name" required maxlength="50" autocomplete="family-name" />
+        </label>
+
+        <label class="field full">
+          <span class="label">Email address *</span>
+          <input type="email" name="email" required maxlength="120" autocomplete="email" />
+        </label>
+
+        <label class="field full">
+          <span class="label">Date of birth *</span>
+          <input type="date" name="dob" required />
+        </label>
+      </div>
+
+      <label class="checkbox">
+        <input type="checkbox" name="consent" value="1" required />
+        <span>
+          I have read and accept the
+          <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy / Terms</a>.
+        </span>
+      </label>
+
+      <div class="actions">
+        <button type="submit" class="btn">Register</button>
+        <a class="link" href="privacy.html">Read Privacy Policy</a>
+      </div>
+
+      <p class="small muted note">
+        Do not submit sensitive information. You can request access, correction, or deletion via the contact details in the Privacy Policy.
+      </p>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <p class="small muted">© School project – demo only</p>
+  </footer>
+</body>
+</html>
