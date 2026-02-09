@@ -1,62 +1,64 @@
 <!doctype html>
-<html lang="en">
+<html lang="no">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Event Registration</title>
+  <title>18+ Vinsmakingskurs – Påmelding</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <main class="card">
-    <header class="header">
-      <h1>Event Registration</h1>
-      <p class="muted">Please fill in your details. All fields marked * are required.</p>
-    </header>
+  <div class="container">
+    <div class="topbar">
+      <span class="badge">18+ Vinsmakingskurs</span>
+    </div>
 
-    <form method="POST" action="register.php" class="form">
-      <div class="grid">
-        <label class="field">
-          <span class="label">First name *</span>
-          <input type="text" name="first_name" required maxlength="50" autocomplete="given-name" />
-        </label>
+    <main class="card">
+      <h1>Påmelding</h1>
+      <p>Felter merket * er obligatoriske. Ikke oppgi sensitive opplysninger.</p>
 
-        <label class="field">
-          <span class="label">Last name *</span>
-          <input type="text" name="last_name" required maxlength="50" autocomplete="family-name" />
-        </label>
-
-        <label class="field full">
-          <span class="label">Email address *</span>
-          <input type="email" name="email" required maxlength="120" autocomplete="email" />
-        </label>
-
-        <label class="field full">
-          <span class="label">Date of birth *</span>
-          <input type="date" name="dob" required />
-        </label>
+      <div class="section">
+        <h2>Formål</h2>
+        <p>Opplysningene brukes til deltakerliste, bekreftelse og praktiske oppdateringer om kurset.</p>
       </div>
 
-      <label class="checkbox">
-        <input type="checkbox" name="consent" value="1" required />
-        <span>
-          I have read and accept the
-          <a href="privacy.html" target="_blank" rel="noopener">Privacy Policy / Terms</a>.
-        </span>
-      </label>
+      <form method="POST" action="api/register.php">
+        <div class="grid">
+          <label class="field">
+            <span class="label">Fornavn *</span>
+            <input type="text" name="first_name" required maxlength="50" autocomplete="given-name" />
+          </label>
 
-      <div class="actions">
-        <button type="submit" class="btn">Register</button>
-        <a class="link" href="privacy.html">Read Privacy Policy</a>
-      </div>
+          <label class="field">
+            <span class="label">Etternavn *</span>
+            <input type="text" name="last_name" required maxlength="50" autocomplete="family-name" />
+          </label>
 
-      <p class="small muted note">
-        Do not submit sensitive information. You can request access, correction, or deletion via the contact details in the Privacy Policy.
-      </p>
-    </form>
-  </main>
+          <label class="field full">
+            <span class="label">E-post *</span>
+            <input type="email" name="email" required maxlength="120" autocomplete="email" />
+          </label>
+        </div>
 
-  <footer class="footer">
-    <p class="small muted">© School project – demo only</p>
-  </footer>
+        <label class="checkbox">
+          <input type="checkbox" name="is_18" value="1" required />
+          <span>
+            Jeg bekrefter at jeg er <strong>18 år eller eldre</strong> (påkrevd pga. alkoholservering). *
+          </span>
+        </label>
+
+        <label class="checkbox">
+          <input type="checkbox" name="consent" value="1" required />
+          <span>
+            Jeg har lest og godtar
+            <a href="privacy.html" target="_blank" rel="noopener">personvernerklæring / vilkår</a>. *
+          </span>
+        </label>
+
+        <div class="actions">
+          <button class="btn" type="submit">Meld meg på</button>
+        </div>
+      </form>
+    </main>
+  </div>
 </body>
 </html>

@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Adminpanel</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <span class="badge">Adminpanel</span>
+      <button class="btn secondary" id="logoutBtn" type="button">Logg ut</button>
+    </div>
+
+    <main class="card">
+      <h1>Deltakere</h1>
+      <p>Visning + søk + sletting. E-post vises maskert.</p>
+
+      <div class="section">
+        <label class="field full">
+          <span class="label">Søk (navn eller e-post)</span>
+          <input id="q" type="text" placeholder="Søk..." />
+        </label>
+        <div class="actions">
+          <button class="btn" id="searchBtn" type="button">Søk</button>
+          <button class="btn secondary" id="resetBtn" type="button">Nullstill</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <table>
+          <thead>
+            <tr>
+              <th>Fornavn</th>
+              <th>Etternavn</th>
+              <th>E-post (maskert)</th>
+              <th>18+</th>
+              <th>Handling</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr><td colspan="5">Laster...</td></tr>
+          </tbody>
+        </table>
+        <div id="err" class="small" style="color:#b91c1c;"></div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const tbody = document.getElementById('tbody');
+    const err = document.getElementById('err');
+    const q = document.getElementById('q');
+
+    async function load() {
+      err.textContent = '';
+      tbody.innerHTML = '<tr><td colspan="5">Laster...</td></tr>';
+
+      const res = await fetch('admin.php?q=' + encodeURIComponent(q.value.trim()));
+      const data = await res.json().catch(() => ({}));
+
+      if (res.status === 401) {
+        location.href = 'admin_login.html';
+        return;
+      }
+      if (!res.ok || !data.ok) {
+        tbody.innerHTML = '<tr><td colspan="5">Feil.</td></tr>';
+        err.textContent = data.error || 'Kunne ikke hente data.';
+        return;
+      }
+
+      if (!data.rows || data.rows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5">Ingen treff.</td></tr>';
+        return;
+      }
+
+      tbody.innerHTML = data.rows.map(r => `
+        <tr>
+          <td>${escapeHtml(r.first_name)}</td>
+          <td>${escapeHtml(r.last_name)}</td>
+          <td>${escapeHtml(r.email_masked)}</td>
+          <td>${r.is_18 === 1 ? 'Ja' : 'Nei'}</td>
+          <td><button class="btn secondary" type="button" data-email="${escapeAttr(r.email)}">Slett</button></td>
+        </tr>
+      `).join('');
+    }
+
+    async function del(email) {
+      const fd = new FormData();
+      fd.append('email', email);
+
+      const res = await fetch('delete.php', { method: 'POST', body: fd });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.status === 401) {
+        location.href = 'admin_login.html';
+        return;
+      }
+      if (!res.ok || !data.ok) {
+        err.textContent = data.error || 'Kunne ikke slette.';
+        return;
+      }
+      load();
+    }
+
+    document.getElementById('searchBtn').addEventListener('click', load);
+    document.getElementById('resetBtn').addEventListener('click', () => { q.value=''; load(); });
+
+    tbody.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-email]');
+      if (!btn) return;
+      const email = btn.getAttribute('data-email');
+      if (confirm('Slette denne påmeldingen?')) del(email);
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      await fetch('logout.php');
+      location.href = 'admin_login.html';
+    });
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+    }
+    function escapeAttr(s) {
+      return String(s).replace(/"/g, '&quot;');
+    }
+
+    load();
+  </script>
+</body>
+</html>

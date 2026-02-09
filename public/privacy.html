@@ -1,87 +1,99 @@
 <!doctype html>
-<html lang="en">
+<html lang="no">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Privacy Policy / Terms</title>
+  <title>Personvernerklæring / Vilkår</title>
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
-  <main class="card">
-    <header class="header">
-      <h1>Privacy Policy / Terms</h1>
-      <p class="muted">Last updated: 2026-02-03</p>
-    </header>
-
-    <section class="section">
-      <h2>1) What data we collect</h2>
-      <ul>
-        <li>First name</li>
-        <li>Last name</li>
-        <li>Email address</li>
-        <li>Date of birth</li>
-        <li>Consent confirmation (that you accepted this policy)</li>
-        <li>Registration time (when you signed up)</li>
-      </ul>
-    </section>
-
-    <section class="section">
-      <h2>2) Why we collect it (purpose)</h2>
-      <p>
-        We collect this data to manage event registrations and contact attendees with event-related information
-        (for example updates or changes). Date of birth may be used to verify age requirements for the event.
-      </p>
-    </section>
-
-    <section class="section">
-      <h2>3) Legal basis</h2>
-      <p>
-        Your data is processed based on your consent, given when you tick the checkbox and submit the registration form.
-      </p>
-    </section>
-
-    <section class="section">
-      <h2>4) Storage and security</h2>
-      <p>
-        Your data is stored securely and is accessible only to authorized administrators. We apply access controls and
-        technical measures to reduce risks such as unauthorized access and data leakage.
-      </p>
-    </section>
-
-    <section class="section">
-      <h2>5) Retention and deletion</h2>
-      <p>
-        We keep your data until the event is completed and then delete it within <strong>14 days</strong>.
-        You can request deletion at any time.
-      </p>
-    </section>
-
-    <section class="section">
-      <h2>6) Your rights</h2>
-      <ul>
-        <li><strong>Access:</strong> request a copy of your data.</li>
-        <li><strong>Correction:</strong> request to correct inaccurate data.</li>
-        <li><strong>Deletion:</strong> request deletion of your data.</li>
-      </ul>
-    </section>
-
-    <section class="section">
-      <h2>7) Contact</h2>
-      <p>
-        To exercise your rights, contact the event organizer (teacher/school).
-      </p>
-      <p class="small muted">
-        This is a school demo. Please do not submit sensitive information.
-      </p>
-    </section>
-
-    <div class="actions">
-      <a class="btn secondary" href="index.html">← Back to registration</a>
+  <div class="container">
+    <div class="topbar">
+      <span class="badge">Personvernerklæring</span>
     </div>
-  </main>
 
-  <footer class="footer">
-    <p class="small muted">© School project – demo only</p>
-  </footer>
+    <main class="card">
+      <h1>Personvernerklæring / vilkår</h1>
+      <p>Gjelder: <strong>18+ Vinsmakingskurs</strong></p>
+
+      <div class="section">
+        <h2>1) Hvilke personopplysninger behandles</h2>
+        <p>
+          Vi behandler: fornavn, etternavn, e-postadresse og 18+-bekreftelse (ja/nei).
+          Vi lagrer også tidspunkt for påmelding (teknisk registreringstid).
+        </p>
+        <p class="small">
+          Vi samler ikke inn fødselsdato, adresse, telefonnummer eller ID-nummer.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>2) Formål og dataminimering</h2>
+        <p>
+          Formålet er å administrere påmelding (deltakerliste) og sende nødvendig informasjon
+          (bekreftelse, praktiske oppdateringer, endringer).
+        </p>
+        <p>
+          For dataminimering lagrer vi ikke fødselsdato – kun en 18+-bekreftelse fordi det er tilstrekkelig
+          for alderskravet ved alkoholservering.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>3) Behandlingsgrunnlag</h2>
+        <p>
+          Behandlingsgrunnlaget er <strong>samtykke</strong>. Samtykke gis når du krysser av for at du har lest og godtar
+          denne erklæringen og sender inn skjemaet.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>4) Lagring, tilgang og sikkerhet</h2>
+        <p>
+          Data lagres i en MySQL-database. Tilgang er begrenset til administratorfunksjonen og applikasjonen.
+          Løsningen bruker tekniske tiltak som tilgangskontroll og parameteriserte spørringer (prepared statements).
+        </p>
+        <p>
+          Passord/tilkoblingsdetaljer ligger ikke i offentlig webmappe, og deles ikke i versjonskontroll (Git).
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>5) Lagringstid og sletting</h2>
+        <p>
+          Opplysningene lagres frem til kurset er gjennomført og slettes deretter innen <strong>14 dager</strong>.
+          Du kan be om sletting tidligere.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>6) Dine rettigheter (teknisk)</h2>
+        <p>Du kan be om:</p>
+        <ul>
+          <li><strong>Innsyn</strong> – få se hvilke data som er lagret om deg</li>
+          <li><strong>Rettelse</strong> – rette feil i data</li>
+          <li><strong>Sletting</strong> – få data slettet</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>7) Norsk lov og regelverk</h2>
+        <p>
+          Behandling av personopplysninger skjer i tråd med
+          <strong>Lov om behandling av personopplysninger (personopplysningsloven)</strong>
+          (<strong>LOV-2018-06-15-38</strong>).
+        </p>
+        <p>
+          Personopplysningsloven gjennomfører også <strong>EUs personvernforordning (GDPR)</strong>
+          (<strong>forordning (EU) 2016/679</strong>) i norsk rett.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>8) Kontakt</h2>
+        <p>For innsyn, retting eller sletting: kontakt arrangør eller oss direkte.</p>
+      </div>
+    </main>
+  </div>
 </body>
 </html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Admin – Innlogging</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="topbar">
+      <span class="badge">Admin</span>
+    </div>
+
+    <main class="card">
+      <h1>Innlogging</h1>
+      <p>Kun for administrator.</p>
+
+      <div class="section">
+        <form id="loginForm">
+          <label class="field full">
+            <span class="label">Passord *</span>
+            <input type="password" name="password" required autocomplete="current-password" />
+          </label>
+
+          <div class="actions">
+            <button class="btn" type="submit">Logg inn</button>
+          </div>
+
+          <div id="msg" class="small" style="color:#b91c1c;"></div>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    const form = document.getElementById('loginForm');
+    const msg = document.getElementById('msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = '';
+
+      const fd = new FormData(form);
+      const res = await fetch('admin_login.php', { method: 'POST', body: fd });
+      const data = await res.json().catch(() => ({}));
+
+      if (res.ok && data.ok) {
+        location.href = 'admin.html';
+        return;
+      }
+      msg.textContent = data.error || 'Innlogging mislyktes.';
+    });
+  </script>
+</body>
+</html>
